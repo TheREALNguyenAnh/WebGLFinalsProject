@@ -196,8 +196,8 @@ function render(){
     setTimeout(function(){
 	requestAnimationFrame(render);
     	gl.clear( gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
-        tri.draw(camera2);
-        cube.draw(camera2);
+        tri.draw(camera2, light1);
+        cube.draw(camera2, light1);
     }, 100 );  //10fps
 }
 

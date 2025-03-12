@@ -40,8 +40,16 @@ class Plane extends Drawable {
     static vIndices = [];
     static vTextureCoords = [];
 
+    static uLightPositionShader = -1;
+    static uLightAmbientShader = -1;
+    static uLightDiffuseShader = -1;
+    static uLightSpecularShader = -1;
+    static uLightDirectionShader = -1;
+    static uLightCutoffShader = -1;
+    static uLightAlphaShader = -1;
+
     static initialize() {
-        Plane.shaderProgram = initShaders(gl, "/vshader.glsl", "/fshader.glsl");
+        Plane.shaderProgram = initShaders(gl, "/planevshader.glsl", "/planefshader.glsl");
         gl.useProgram(Plane.shaderProgram);
         console.log(Plane.shaderProgram);
 
@@ -93,6 +101,13 @@ class Plane extends Drawable {
         Plane.uCameraMatrixShader = gl.getUniformLocation(Plane.shaderProgram, "cameraMatrix");
         Plane.uProjectionMatrixShader = gl.getUniformLocation(Plane.shaderProgram, "projectionMatrix");
 
+        Plane.uLightPositionShader = gl.getUniformLocation(Plane.shaderProgram, "lightPosition");
+        Plane.uLightAmbientShader = gl.getUniformLocation(Plane.shaderProgram, "lightAmbient");
+        Plane.uLightDiffuseShader = gl.getUniformLocation(Plane.shaderProgram, "lightDiffuse");
+        Plane.uLightSpecularShader = gl.getUniformLocation(Plane.shaderProgram, "lightSpecular");
+        Plane.uLightDirectionShader = gl.getUniformLocation(Plane.shaderProgram, "lightDirection");
+        Plane.uLightCutoffShader = gl.getUniformLocation(Plane.shaderProgram, "lightCutoff");
+        Plane.uLightAlphaShader = gl.getUniformLocation(Plane.shaderProgram, "lightAlpha");
     }
     static initializeTexture() {
         var image = new Image();
@@ -121,7 +136,7 @@ class Plane extends Drawable {
 
     }
 
-    draw(camera) {
+    draw(camera, light) {
         if (Plane.texture == -1)  //only draw when texture is loaded.
             return;
 
@@ -141,6 +156,15 @@ class Plane extends Drawable {
         gl.uniformMatrix4fv(Plane.uModelMatrixShader, false, flatten(this.modelMatrix));
         gl.uniformMatrix4fv(Plane.uCameraMatrixShader, false, flatten(camera.cameraMatrix));
         gl.uniformMatrix4fv(Plane.uProjectionMatrixShader, false, flatten(camera.projectionMatrix));
+
+        const lightPosition = vec4(light.location[0], light.location[1], light.location[2], 1.0);
+        gl.uniform4fv(Plane.uLightPositionShader, flatten(lightPosition));
+        gl.uniform4fv(Plane.uLightAmbientShader, flatten(light.ambient));
+        gl.uniform4fv(Plane.uLightDiffuseShader, flatten(light.diffuse));
+        gl.uniform4fv(Plane.uLightSpecularShader, flatten(light.specular));
+        gl.uniform3fv(Plane.uLightDirectionShader, flatten(light.direction));
+        gl.uniform1f(Plane.uLightCutoffShader, light.cutoff);
+        gl.uniform1f(Plane.uLightAlphaShader, light.alpha);
 
         gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, Plane.indexBuffer);
 

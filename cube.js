@@ -93,8 +93,16 @@ class Cube extends Drawable {
     static texture = -1;
     static uTextureUnitShader = -1;
 
+    static uLightPositionShader = -1;
+    static uLightAmbientShader = -1;
+    static uLightDiffuseShader = -1;
+    static uLightSpecularShader = -1;
+    static uLightDirectionShader = -1;
+    static uLightCutoffShader = -1;
+    static uLightAlphaShader = -1;
+
     static initialize() {
-        Cube.shaderProgram = initShaders(gl, "/vshader.glsl", "/fshader.glsl");
+        Cube.shaderProgram = initShaders(gl, "/cubevshader.glsl", "/cubefshader.glsl");
         gl.useProgram(Cube.shaderProgram);
         console.log(Cube.shaderProgram);
 
@@ -126,6 +134,14 @@ class Cube extends Drawable {
         Cube.uModelMatrixShader = gl.getUniformLocation(Cube.shaderProgram, "modelMatrix");
         Cube.uCameraMatrixShader = gl.getUniformLocation(Cube.shaderProgram, "cameraMatrix");
         Cube.uProjectionMatrixShader = gl.getUniformLocation(Cube.shaderProgram, "projectionMatrix");
+
+        Cube.uLightPositionShader = gl.getUniformLocation(Cube.shaderProgram, "lightPosition");
+        Cube.uLightAmbientShader = gl.getUniformLocation(Cube.shaderProgram, "lightAmbient");
+        Cube.uLightDiffuseShader = gl.getUniformLocation(Cube.shaderProgram, "lightDiffuse");
+        Cube.uLightSpecularShader = gl.getUniformLocation(Cube.shaderProgram, "lightSpecular");
+        Cube.uLightDirectionShader = gl.getUniformLocation(Cube.shaderProgram, "lightDirection");
+        Cube.uLightCutoffShader = gl.getUniformLocation(Cube.shaderProgram, "lightCutoff");
+        Cube.uLightAlphaShader = gl.getUniformLocation(Cube.shaderProgram, "lightAlpha");
     }
 
     static initializeTexture() {
@@ -153,7 +169,7 @@ class Cube extends Drawable {
         }
     }
 
-    draw(camera) {
+    draw(camera, light) {
         if (Cube.texture == -1)  //only draw when texture is loaded.
             return;
 
@@ -172,6 +188,15 @@ class Cube extends Drawable {
         gl.uniformMatrix4fv(Cube.uModelMatrixShader, false, flatten(this.modelMatrix));
         gl.uniformMatrix4fv(Cube.uCameraMatrixShader, false, flatten(camera.cameraMatrix));
         gl.uniformMatrix4fv(Cube.uProjectionMatrixShader, false, flatten(camera.projectionMatrix));
+
+        const lightPosition = vec4(light.location[0], light.location[1], light.location[2], 1.0);
+        gl.uniform4fv(Cube.uLightPositionShader, flatten(lightPosition));
+        gl.uniform4fv(Cube.uLightAmbientShader, flatten(light.ambient));
+        gl.uniform4fv(Cube.uLightDiffuseShader, flatten(light.diffuse));
+        gl.uniform4fv(Cube.uLightSpecularShader, flatten(light.specular));
+        gl.uniform3fv(Cube.uLightDirectionShader, flatten(light.direction));
+        gl.uniform1f(Cube.uLightCutoffShader, light.cutoff);
+        gl.uniform1f(Cube.uLightAlphaShader, light.alpha);
 
         gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, Cube.indexBuffer);
 
