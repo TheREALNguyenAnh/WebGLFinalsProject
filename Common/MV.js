@@ -275,7 +275,6 @@ function mat4()
     out[2] = new Array(4);
     out[3] = new Array(4);
 
-    
     switch ( arguments.length ) {
     case 0:
       out[0][0]=out[1][1]=out[2][2]=out[3][3] = 1.0;
@@ -299,16 +298,13 @@ function mat4()
       }
 
     case 16:
-      
       for(var i=0; i<4; i++) for(var j=0; j<4; j++) {
         out[i][j] = arguments[4*i+j];
-      
       }
-      
       break;
     }
-    
     out.type = 'mat4';
+
     return out;
 }
 
@@ -880,7 +876,7 @@ function flatten( v )
       }
 
       var floats = new Float32Array( v.length*v[0].length  );
-
+      
       for(var i = 0; i<v.length; i++) for(var j=0; j<v[0].length; j++) {
         floats[i*v[0].length+j] = v[i][j];
       }
