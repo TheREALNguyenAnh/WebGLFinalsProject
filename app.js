@@ -152,7 +152,6 @@ window.addEventListener('keydown', event => {
             cam = (cam === flycam) ? ridecam : flycam
             break
     }
-    render()
 })
 
 
