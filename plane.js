@@ -51,7 +51,6 @@ class Plane extends Drawable {
     static initialize() {
         Plane.shaderProgram = initShaders(gl, "/planevshader.glsl", "/planefshader.glsl");
         gl.useProgram(Plane.shaderProgram);
-        console.log(Plane.shaderProgram);
 
         if (!Plane.shaderProgram) {
             console.error("Failed to initialize shaders.");
@@ -97,6 +96,7 @@ class Plane extends Drawable {
         //console.log(Plane.aPositionShader);
         //console.log(Plane.aTextureCoordShader);
 
+        Plane.uViewPositionShader = gl.getUniformLocation(Plane.shaderProgram, "uViewPosition");
         Plane.uModelMatrixShader = gl.getUniformLocation(Plane.shaderProgram, "modelMatrix");
         Plane.uCameraMatrixShader = gl.getUniformLocation(Plane.shaderProgram, "cameraMatrix");
         Plane.uProjectionMatrixShader = gl.getUniformLocation(Plane.shaderProgram, "projectionMatrix");
@@ -153,6 +153,7 @@ class Plane extends Drawable {
         gl.uniform1i(Plane.uTextureUnitShader, 0);
 
 
+        gl.uniform3fv(Plane.uViewPositionShader, flatten(camera.vrp));
         gl.uniformMatrix4fv(Plane.uModelMatrixShader, false, flatten(this.modelMatrix));
         gl.uniformMatrix4fv(Plane.uCameraMatrixShader, false, flatten(camera.cameraMatrix));
         gl.uniformMatrix4fv(Plane.uProjectionMatrixShader, false, flatten(camera.projectionMatrix));
@@ -161,6 +162,7 @@ class Plane extends Drawable {
         gl.uniform4fv(Plane.uLightPositionShader, flatten(lightPosition));
         gl.uniform4fv(Plane.uLightAmbientShader, flatten(light.ambient));
         gl.uniform4fv(Plane.uLightDiffuseShader, flatten(light.diffuse));
+        console.log("Specular Color:", light.specular);
         gl.uniform4fv(Plane.uLightSpecularShader, flatten(light.specular));
         gl.uniform3fv(Plane.uLightDirectionShader, flatten(light.direction));
         gl.uniform1f(Plane.uLightCutoffShader, light.cutoff);

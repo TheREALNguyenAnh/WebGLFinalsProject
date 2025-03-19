@@ -1,8 +1,12 @@
 #version 300 es
 in vec3 aPosition;
 in vec2 aTextureCoord;
+in vec3 aNormal; // Normal attribute
 
 out vec2 vTextureCoord;
+out vec3 vNormal; // Pass the normal to the fragment shader
+out vec3 vFragPos; // Pass the world position of the fragment
+
 uniform mat4 modelMatrix, cameraMatrix, projectionMatrix;
 
 uniform vec4 lightPosition;
@@ -22,8 +26,13 @@ out float vLightCutoff;
 out float vLightAlpha;
 
 void main() {
-    gl_Position = projectionMatrix * cameraMatrix * modelMatrix * vec4(aPosition, 1.0);
+    vec4 worldPosition = modelMatrix * vec4(aPosition, 1.0);
+    gl_Position = projectionMatrix * cameraMatrix * worldPosition;
+
     vTextureCoord = aTextureCoord;
+    vNormal = normalize(mat3(modelMatrix) * aNormal); // Transform normal to world space
+    vFragPos = vec3(worldPosition); // Store world position
+
     vLightPosition = lightPosition;
     vLightAmbient = lightAmbient;
     vLightDiffuse = lightDiffuse;
