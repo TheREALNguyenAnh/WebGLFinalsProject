@@ -109,17 +109,20 @@ window.onload = () => {
     );
     sceneItems.push(wall_d2);
 
-    
+    let then = 0
 
-    animate()
-}
+    function animate(now) {
+        now *= 0.001 // Convert to seconds
+        const deltaTime = now - then
+        then = now
 
-function animate() {
-    setInterval(function () {
-        if (cam === ridecam) cam.increment(0.005)
-        animateSun(light)
+        if (cam === ridecam) cam.increment(0.005 * deltaTime)
+        animateSun(light, deltaTime)
         render()
-    }, 10)
+        requestAnimationFrame(animate)
+    }
+
+    requestAnimationFrame(animate)
 }
 
 function render() {
@@ -131,8 +134,6 @@ function render() {
     for (let i = 0; i < sceneItems.length; i++) {
         sceneItems[i].draw(cam, proj, light)
     }
-
-    
 }
 
 window.addEventListener('keydown', event => {
@@ -154,25 +155,19 @@ window.addEventListener('keydown', event => {
     render()
 })
 
-gl.canvas.addEventListener('mousemove', event => {
-    const r = canvas.getBoundingClientRect()
 
-    mX = event.clientX - r.left
-    mY = event.clientY - r.top
-})
-
-function animateSun(light) {
-    light.step = (light.step + 1) % light.maxStep
+function animateSun(light, deltaTime) {
+    light.step = (light.step + deltaTime * 1000) % light.maxStep
     let newPos = vec4(
-        100 * Math.sin(2 * 3.14 * (light.step / light.maxStep)),
-        100 * Math.cos(2 * 3.14 * (light.step / light.maxStep)),
+        100 * Math.sin(2 * Math.PI * (light.step / light.maxStep)),
+        100 * Math.cos(2 * Math.PI * (light.step / light.maxStep)),
         0,
         1
     )
 
     if (light.position[1] > 0 && newPos[1] < 0) {
         light.diffuse = light.specular = vec4(0, 0, 0, 0)
-        light.ambient = vec4(.5, .5, .5, 1)
+        light.ambient = vec4(0.5, 0.5, 0.5, 1)
         sky = nightsky
     } else if (light.position[1] < 0 && newPos[1] > 0) {
         light.diffuse = light.specular = vec4(1, 1, 1, 1)
