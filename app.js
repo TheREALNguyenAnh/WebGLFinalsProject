@@ -56,176 +56,212 @@ window.onload = () => {
     // HOUSE FRONT
     // f1
     let f_1a = new TexLitDrawable(gl, getCube(), shaderTL, texWood, objLight);
-    f_1a.trans = { t_x: -7.5, t_y: 1, t_z: 15, s_x: 10 };
+    f_1a.trans = { t_x: -7.5, t_y: 0.5, t_z: 15, s_x: 10 };
     sceneItems.push(f_1a);
     
     let f_1b = new TexLitDrawable(gl, getCube(), shaderTL, texWood, objLight);
-    f_1b.trans = { t_x: 7.5, t_y: 1, t_z: 15, s_x: 10 };
+    f_1b.trans = { t_x: 7.5, t_y: 0.5, t_z: 15, s_x: 10 };
     sceneItems.push(f_1b);
 
     // f2
     let f_2a = new TexLitDrawable(gl, getCube(), shaderTL, texWood, objLight);
-    f_2a.trans = { t_x: -7.5, t_y: 2.1, t_z: 15, s_x: 10 };
+    f_2a.trans = { t_x: -7.5, t_y: 1.6, t_z: 15, s_x: 10 };
     sceneItems.push(f_2a);
     
     let f_2b = new TexLitDrawable(gl, getCube(), shaderTL, texWood, objLight);
-    f_2b.trans = { t_x: 7.5, t_y: 2.1, t_z: 15, s_x: 10 };
+    f_2b.trans = { t_x: 7.5, t_y: 1.6, t_z: 15, s_x: 10 };
     sceneItems.push(f_2b);
 
     // f3
     let f_3a = new TexLitDrawable(gl, getCube(), shaderTL, texWood, objLight);
-    f_3a.trans = { t_x: -7.5, t_y: 3.2, t_z: 15, s_x: 10 };
+    f_3a.trans = { t_x: -7.5, t_y: 2.7, t_z: 15, s_x: 10 };
     sceneItems.push(f_3a);
     
     let f_3b = new TexLitDrawable(gl, getCube(), shaderTL, texWood, objLight);
-    f_3b.trans = { t_x: 7.5, t_y: 3.2, t_z: 15, s_x: 10 };
+    f_3b.trans = { t_x: 7.5, t_y: 2.7, t_z: 15, s_x: 10 };
     sceneItems.push(f_3b);
 
     // f4
     let f_4a = new TexLitDrawable(gl, getCube(), shaderTL, texWood, objLight);
-    f_4a.trans = { t_x: -7.5, t_y: 4.3, t_z: 15, s_x: 10 };
+    f_4a.trans = { t_x: -7.5, t_y: 3.8, t_z: 15, s_x: 10 };
     sceneItems.push(f_4a);
     
     let f_4b = new TexLitDrawable(gl, getCube(), shaderTL, texWood, objLight);
-    f_4b.trans = { t_x: 7.5, t_y: 4.3, t_z: 15, s_x: 10 };
+    f_4b.trans = { t_x: 7.5, t_y: 3.8, t_z: 15, s_x: 10 };
     sceneItems.push(f_4b);
 
     // f5
     let f_5a = new TexLitDrawable(gl, getCube(), shaderTL, texWood, objLight);
-    f_5a.trans = { t_x: -7, t_y: 5.4, t_z: 15, s_x: 11 };
+    f_5a.trans = { t_x: -7, t_y: 4.9, t_z: 15, s_x: 11 };
     sceneItems.push(f_5a);
     
     let f_5b = new TexLitDrawable(gl, getCube(), shaderTL, texWood, objLight);
-    f_5b.trans = { t_x: 7, t_y: 5.4, t_z: 15, s_x: 11 };
+    f_5b.trans = { t_x: 7, t_y: 4.9, t_z: 15, s_x: 11 };
     sceneItems.push(f_5b);
     
     // f6
     let f_6a = new TexLitDrawable(gl, getCube(), shaderTL, texWood, objLight);
-    f_6a.trans = { t_x: -6.5, t_y: 6.5, t_z: 15, s_x: 12 };
+    f_6a.trans = { t_x: -6.5, t_y: 6, t_z: 15, s_x: 12 };
     sceneItems.push(f_6a);
     
     let f_6b = new TexLitDrawable(gl, getCube(), shaderTL, texWood, objLight);
-    f_6b.trans = { t_x: 6.5, t_y: 6.5, t_z: 15, s_x: 12 };
+    f_6b.trans = { t_x: 6.5, t_y: 6, t_z: 15, s_x: 12 };
     sceneItems.push(f_6b);
 
     // f7
     let f_7 = new TexLitDrawable(gl, getCube(), shaderTL, texWood, objLight);
-    f_7.trans = { t_x: 0, t_y: 7.6, t_z: 15, s_x: 25 };
+    f_7.trans = { t_x: 0, t_y: 7.1, t_z: 15, s_x: 25 };
     sceneItems.push(f_7);
+
+    // froof
+    let f_r = new TexLitDrawable(
+        gl,
+        [
+            vec3(0, 13, 16),
+            vec3(0, 7.1, 16),
+            vec3(-12.5, 7.1, 16),
+            vec3(12.5, 7.1, 16),
+            vec3(0, 7.1, 16),
+            vec3(0, 13, 16),
+        ],
+        shaderTL,
+        texWood,
+        objLight
+    );
+    f_r.trans = {};
+    sceneItems.push(f_r);
 
     // r1
     let r_1 = new TexLitDrawable(gl, getCube(), shaderTL, texWood, objLight);
-    r_1.trans = { t_x: 13, t_y: 1, t_z: 2, s_z: 25 };
+    r_1.trans = { t_x: 13, t_y: 0.5, t_z: 2, s_z: 25 };
     sceneItems.push(r_1);
 
     // r2
     let r_2 = new TexLitDrawable(gl, getCube(), shaderTL, texWood, objLight);
-    r_2.trans = { t_x: 13, t_y: 2.1, t_z: 2, s_z: 25 };
+    r_2.trans = { t_x: 13, t_y: 1.6, t_z: 2, s_z: 25 };
     sceneItems.push(r_2);
 
     // r3
     let r_3 = new TexLitDrawable(gl, getCube(), shaderTL, texWood, objLight);
-    r_3.trans = { t_x: 13, t_y: 3.2, t_z: 2, s_z: 25 };
+    r_3.trans = { t_x: 13, t_y: 2.7, t_z: 2, s_z: 25 };
     sceneItems.push(r_3);
 
     // r4
     let r_4 = new TexLitDrawable(gl, getCube(), shaderTL, texWood, objLight);
-    r_4.trans = { t_x: 13, t_y: 4.3, t_z: 2, s_z: 25 };
+    r_4.trans = { t_x: 13, t_y: 3.8, t_z: 2, s_z: 25 };
     sceneItems.push(r_4);
 
     // r5
     let r_5 = new TexLitDrawable(gl, getCube(), shaderTL, texWood, objLight);
-    r_5.trans = { t_x: 13, t_y: 5.4, t_z: 2, s_z: 25 };
+    r_5.trans = { t_x: 13, t_y: 4.9, t_z: 2, s_z: 25 };
     sceneItems.push(r_5);
 
     // r6
     let r_6 = new TexLitDrawable(gl, getCube(), shaderTL, texWood, objLight);
-    r_6.trans = { t_x: 13, t_y: 6.5, t_z: 2, s_z: 25 };
+    r_6.trans = { t_x: 13, t_y: 6, t_z: 2, s_z: 25 };
     sceneItems.push(r_6);
 
     // r7
     let r_7 = new TexLitDrawable(gl, getCube(), shaderTL, texWood, objLight);
-    r_7.trans = { t_x: 13, t_y: 7.6, t_z: 2, s_z: 25 };
+    r_7.trans = { t_x: 13, t_y: 7.1, t_z: 2, s_z: 25 };
     sceneItems.push(r_7);
 
     // l1
     let l_1 = new TexLitDrawable(gl, getCube(), shaderTL, texWood, objLight);
-    l_1.trans = { t_x: -13, t_y: 1, t_z: 2, s_z: 25 };
+    l_1.trans = { t_x: -13, t_y: 0.5, t_z: 2, s_z: 25 };
     sceneItems.push(l_1);
 
     // l2
     let l_2 = new TexLitDrawable(gl, getCube(), shaderTL, texWood, objLight);
-    l_2.trans = { t_x: -13, t_y: 2.1, t_z: 2, s_z: 25 };
+    l_2.trans = { t_x: -13, t_y: 1.6, t_z: 2, s_z: 25 };
     sceneItems.push(l_2);
 
     // l3
     let l_3 = new TexLitDrawable(gl, getCube(), shaderTL, texWood, objLight);
-    l_3.trans = { t_x: -13, t_y: 3.2, t_z: 2, s_z: 25 };
+    l_3.trans = { t_x: -13, t_y: 2.7, t_z: 2, s_z: 25 };
     sceneItems.push(l_3);
 
     // l4
     let l_4 = new TexLitDrawable(gl, getCube(), shaderTL, texWood, objLight);
-    l_4.trans = { t_x: -13, t_y: 4.3, t_z: 2, s_z: 25 };
+    l_4.trans = { t_x: -13, t_y: 3.8, t_z: 2, s_z: 25 };
     sceneItems.push(l_4);
 
     // l5
     let l_5 = new TexLitDrawable(gl, getCube(), shaderTL, texWood, objLight);
-    l_5.trans = { t_x: -13, t_y: 5.4, t_z: 2, s_z: 25 };
+    l_5.trans = { t_x: -13, t_y: 4.9, t_z: 2, s_z: 25 };
     sceneItems.push(l_5);
 
     // r6
     let l_6 = new TexLitDrawable(gl, getCube(), shaderTL, texWood, objLight);
-    l_6.trans = { t_x: -13, t_y: 6.5, t_z: 2, s_z: 25 };
+    l_6.trans = { t_x: -13, t_y: 6, t_z: 2, s_z: 25 };
     sceneItems.push(l_6);
 
     // r7
     let l_7 = new TexLitDrawable(gl, getCube(), shaderTL, texWood, objLight);
-    l_7.trans = { t_x: -13, t_y: 7.6, t_z: 2, s_z: 25 };
+    l_7.trans = { t_x: -13, t_y: 7.1, t_z: 2, s_z: 25 };
     sceneItems.push(l_7);
 
     // b1
     let b_1 = new TexLitDrawable(gl, getCube(), shaderTL, texWood, objLight);
-    b_1.trans = { t_x: 0, t_y: 1, t_z: -11, s_x: 25 };
+    b_1.trans = { t_x: 0, t_y: 0.5, t_z: -11, s_x: 25 };
     sceneItems.push(b_1);
 
     // b2
     let b_2 = new TexLitDrawable(gl, getCube(), shaderTL, texWood, objLight);
-    b_2.trans = { t_x: 0, t_y: 2.1, t_z: -11, s_x: 25 };
+    b_2.trans = { t_x: 0, t_y: 1.6, t_z: -11, s_x: 25 };
     sceneItems.push(b_2);
 
     // b3
     let b_3 = new TexLitDrawable(gl, getCube(), shaderTL, texWood, objLight);
-    b_3.trans = { t_x: 0, t_y: 3.2, t_z: -11, s_x: 25 };
+    b_3.trans = { t_x: 0, t_y: 2.7, t_z: -11, s_x: 25 };
     sceneItems.push(b_3);
 
     // b4
     let b_4 = new TexLitDrawable(gl, getCube(), shaderTL, texWood, objLight);
-    b_4.trans = { t_x: 0, t_y: 4.3, t_z: -11, s_x: 25 };
+    b_4.trans = { t_x: 0, t_y: 3.8, t_z: -11, s_x: 25 };
     sceneItems.push(b_4);
 
     // b5
     let b_5 = new TexLitDrawable(gl, getCube(), shaderTL, texWood, objLight);
-    b_5.trans = { t_x: 0, t_y: 5.4, t_z: -11, s_x: 25 };
+    b_5.trans = { t_x: 0, t_y: 4.9, t_z: -11, s_x: 25 };
     sceneItems.push(b_5);
 
     // b6
     let b_6 = new TexLitDrawable(gl, getCube(), shaderTL, texWood, objLight);
-    b_6.trans = { t_x: 0, t_y: 6.5, t_z: -11, s_x: 25 };
+    b_6.trans = { t_x: 0, t_y: 6, t_z: -11, s_x: 25 };
     sceneItems.push(b_6);
 
-    // b6
+    // b7
     let b_7 = new TexLitDrawable(gl, getCube(), shaderTL, texWood, objLight);
-    b_7.trans = { t_x: 0, t_y: 7.6, t_z: -11, s_x: 25 };
+    b_7.trans = { t_x: 0, t_y: 7.1, t_z: -11, s_x: 25 };
     sceneItems.push(b_7);
+
+    // broof
+    let b_r = new TexLitDrawable(
+        gl,
+        [
+            vec3(0, 13, 14),
+            vec3(0, 7.1, 14),
+            vec3(-12.5, 7.1, 14),
+            vec3(12.5, 7.1, 14),
+            vec3(0, 7.1, 14),
+            vec3(0, 13, 14),
+        ],
+        shaderTL,
+        texWood,
+        objLight
+    );
+    b_r.trans = {t_z: -25};
+    sceneItems.push(b_r);
 
     // ROOF
     
     let roof_a = new TexLitDrawable(gl, getPlane(0), shaderTL, texRoof, objLight);
-    roof_a.trans = { t_x: 7, t_y: 11, t_z: 2, s_x: 8, s_y: 7.5, s_z: 15, r_x: 0, r_y: 0, r_z: -25 };
+    roof_a.trans = { t_x: 7, t_y: 10.5, t_z: 2, s_x: 8, s_y: 7.5, s_z: 15, r_x: 0, r_y: 0, r_z: -25 };
     sceneItems.push(roof_a);
 
     let roof_b = new TexLitDrawable(gl, getPlane(0), shaderTL, texRoof, objLight);
-    roof_b.trans = { t_x: -7, t_y: 11, t_z: 2, s_x: 8, s_y: 7.5, s_z: 15, r_x: 0, r_y: 180, r_z: 25 };
+    roof_b.trans = { t_x: -7, t_y: 10.5, t_z: 2, s_x: 8, s_y: 7.5, s_z: 15, r_x: 0, r_y: 180, r_z: 25 };
     sceneItems.push(roof_b);
 
     let then = 0
