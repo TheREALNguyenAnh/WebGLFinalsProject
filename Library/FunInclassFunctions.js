@@ -78,6 +78,47 @@ function getSphere(divisions) {
     ], divisions)
 }
 
+function getCube(){
+    return subdividePlane([
+        vec3(-0.5, -0.5, 0.5),
+        vec3(0.5, -0.5, 0.5),
+        vec3(0.5, 0.5, 0.5),
+        vec3(-0.5, -0.5, 0.5),
+        vec3(0.5, 0.5, 0.5),
+        vec3(-0.5, 0.5, 0.5),
+        vec3(0.5, 0.5, 0.5),
+        vec3(0.5, -0.5, 0.5),
+        vec3(0.5, -0.5, -0.5),
+        vec3(0.5, 0.5, 0.5),
+        vec3(0.5, -0.5, -0.5),
+        vec3(0.5, 0.5, -0.5),
+        vec3(-0.5, -0.5, 0.5),
+        vec3(-0.5, -0.5, -0.5),
+        vec3(0.5, -0.5, -0.5),
+        vec3(-0.5, -0.5, 0.5),
+        vec3(0.5, -0.5, -0.5),
+        vec3(0.5, -0.5, 0.5),
+        vec3(-0.5, 0.5, 0.5),
+        vec3(0.5, 0.5, 0.5),
+        vec3(0.5, 0.5, -0.5),
+        vec3(-0.5, 0.5, 0.5),
+        vec3(0.5, 0.5, -0.5),
+        vec3(-0.5, 0.5, -0.5),
+        vec3(-0.5, -0.5, -0.5),
+        vec3(-0.5, 0.5, -0.5),
+        vec3(0.5, 0.5, -0.5),
+        vec3(-0.5, -0.5, -0.5),
+        vec3(0.5, 0.5, -0.5),
+        vec3(0.5, -0.5, -0.5),
+        vec3(-0.5, -0.5, 0.5),
+        vec3(-0.5, 0.5, 0.5),
+        vec3(-0.5, 0.5, -0.5),
+        vec3(-0.5, -0.5, 0.5),
+        vec3(-0.5, 0.5, -0.5),
+        vec3(-0.5, -0.5, -0.5)
+    ], 0)
+}
+
 function getFromFile(path) {
     const file = loadFileAJAX(path)
     const lines = file.split('\n')
@@ -110,6 +151,7 @@ function getFromFile(path) {
 
 export {
     getPlane,
+    getCube,
     getSphere,
     getFromFile,
 }

@@ -1,6 +1,6 @@
 import { texNightSky, texDaySky, texGrass, texRoof, texCobble, texWood, texBrick } from './Textures/index.js'
 import { FlyCam, RideCam, Light, SkyBox, TexLitDrawable } from './Objects/index.js'
-import { getPlane } from './Library/index.js'
+import { getPlane, getCube, getSphere, getFromFile } from './Library/index.js'
 import { shSky, shTL} from './Shaders/index.js'
 
 const proj = perspective(90, 1, 0.1, 100)
@@ -53,61 +53,184 @@ window.onload = () => {
     lot.trans = { t_y: 0.01, s_x: 20, s_z: 20 };
     sceneItems.push(lot);
 
-    let wall_a = new TexLitDrawable(gl, getPlane(0), shaderTL, texWood, objLight);
-    wall_a.trans = { t_y: -3.5, t_z: 10, s_x: 3.5, s_z: 10, r_x: 90, r_y: 90 };
-    sceneItems.push(wall_a);
+    // HOUSE FRONT
+    // f1
+    let f_1a = new TexLitDrawable(gl, getCube(), shaderTL, texWood, objLight);
+    f_1a.trans = { t_x: -7.5, t_y: 1, t_z: 15, s_x: 10 };
+    sceneItems.push(f_1a);
+    
+    let f_1b = new TexLitDrawable(gl, getCube(), shaderTL, texWood, objLight);
+    f_1b.trans = { t_x: 7.5, t_y: 1, t_z: 15, s_x: 10 };
+    sceneItems.push(f_1b);
 
+    // f2
+    let f_2a = new TexLitDrawable(gl, getCube(), shaderTL, texWood, objLight);
+    f_2a.trans = { t_x: -7.5, t_y: 2.1, t_z: 15, s_x: 10 };
+    sceneItems.push(f_2a);
+    
+    let f_2b = new TexLitDrawable(gl, getCube(), shaderTL, texWood, objLight);
+    f_2b.trans = { t_x: 7.5, t_y: 2.1, t_z: 15, s_x: 10 };
+    sceneItems.push(f_2b);
+
+    // f3
+    let f_3a = new TexLitDrawable(gl, getCube(), shaderTL, texWood, objLight);
+    f_3a.trans = { t_x: -7.5, t_y: 3.2, t_z: 15, s_x: 10 };
+    sceneItems.push(f_3a);
+    
+    let f_3b = new TexLitDrawable(gl, getCube(), shaderTL, texWood, objLight);
+    f_3b.trans = { t_x: 7.5, t_y: 3.2, t_z: 15, s_x: 10 };
+    sceneItems.push(f_3b);
+
+    // f4
+    let f_4a = new TexLitDrawable(gl, getCube(), shaderTL, texWood, objLight);
+    f_4a.trans = { t_x: -7.5, t_y: 4.3, t_z: 15, s_x: 10 };
+    sceneItems.push(f_4a);
+    
+    let f_4b = new TexLitDrawable(gl, getCube(), shaderTL, texWood, objLight);
+    f_4b.trans = { t_x: 7.5, t_y: 4.3, t_z: 15, s_x: 10 };
+    sceneItems.push(f_4b);
+
+    // f5
+    let f_5a = new TexLitDrawable(gl, getCube(), shaderTL, texWood, objLight);
+    f_5a.trans = { t_x: -7, t_y: 5.4, t_z: 15, s_x: 11 };
+    sceneItems.push(f_5a);
+    
+    let f_5b = new TexLitDrawable(gl, getCube(), shaderTL, texWood, objLight);
+    f_5b.trans = { t_x: 7, t_y: 5.4, t_z: 15, s_x: 11 };
+    sceneItems.push(f_5b);
+    
+    // f6
+    let f_6a = new TexLitDrawable(gl, getCube(), shaderTL, texWood, objLight);
+    f_6a.trans = { t_x: -6.5, t_y: 6.5, t_z: 15, s_x: 12 };
+    sceneItems.push(f_6a);
+    
+    let f_6b = new TexLitDrawable(gl, getCube(), shaderTL, texWood, objLight);
+    f_6b.trans = { t_x: 6.5, t_y: 6.5, t_z: 15, s_x: 12 };
+    sceneItems.push(f_6b);
+
+    // f7
+    let f_7 = new TexLitDrawable(gl, getCube(), shaderTL, texWood, objLight);
+    f_7.trans = { t_x: 0, t_y: 7.6, t_z: 15, s_x: 25 };
+    sceneItems.push(f_7);
+
+    // r1
+    let r_1 = new TexLitDrawable(gl, getCube(), shaderTL, texWood, objLight);
+    r_1.trans = { t_x: 13, t_y: 1, t_z: 2, s_z: 25 };
+    sceneItems.push(r_1);
+
+    // r2
+    let r_2 = new TexLitDrawable(gl, getCube(), shaderTL, texWood, objLight);
+    r_2.trans = { t_x: 13, t_y: 2.1, t_z: 2, s_z: 25 };
+    sceneItems.push(r_2);
+
+    // r3
+    let r_3 = new TexLitDrawable(gl, getCube(), shaderTL, texWood, objLight);
+    r_3.trans = { t_x: 13, t_y: 3.2, t_z: 2, s_z: 25 };
+    sceneItems.push(r_3);
+
+    // r4
+    let r_4 = new TexLitDrawable(gl, getCube(), shaderTL, texWood, objLight);
+    r_4.trans = { t_x: 13, t_y: 4.3, t_z: 2, s_z: 25 };
+    sceneItems.push(r_4);
+
+    // r5
+    let r_5 = new TexLitDrawable(gl, getCube(), shaderTL, texWood, objLight);
+    r_5.trans = { t_x: 13, t_y: 5.4, t_z: 2, s_z: 25 };
+    sceneItems.push(r_5);
+
+    // r6
+    let r_6 = new TexLitDrawable(gl, getCube(), shaderTL, texWood, objLight);
+    r_6.trans = { t_x: 13, t_y: 6.5, t_z: 2, s_z: 25 };
+    sceneItems.push(r_6);
+
+    // r7
+    let r_7 = new TexLitDrawable(gl, getCube(), shaderTL, texWood, objLight);
+    r_7.trans = { t_x: 13, t_y: 7.6, t_z: 2, s_z: 25 };
+    sceneItems.push(r_7);
+
+    // l1
+    let l_1 = new TexLitDrawable(gl, getCube(), shaderTL, texWood, objLight);
+    l_1.trans = { t_x: -13, t_y: 1, t_z: 2, s_z: 25 };
+    sceneItems.push(l_1);
+
+    // l2
+    let l_2 = new TexLitDrawable(gl, getCube(), shaderTL, texWood, objLight);
+    l_2.trans = { t_x: -13, t_y: 2.1, t_z: 2, s_z: 25 };
+    sceneItems.push(l_2);
+
+    // l3
+    let l_3 = new TexLitDrawable(gl, getCube(), shaderTL, texWood, objLight);
+    l_3.trans = { t_x: -13, t_y: 3.2, t_z: 2, s_z: 25 };
+    sceneItems.push(l_3);
+
+    // l4
+    let l_4 = new TexLitDrawable(gl, getCube(), shaderTL, texWood, objLight);
+    l_4.trans = { t_x: -13, t_y: 4.3, t_z: 2, s_z: 25 };
+    sceneItems.push(l_4);
+
+    // l5
+    let l_5 = new TexLitDrawable(gl, getCube(), shaderTL, texWood, objLight);
+    l_5.trans = { t_x: -13, t_y: 5.4, t_z: 2, s_z: 25 };
+    sceneItems.push(l_5);
+
+    // r6
+    let l_6 = new TexLitDrawable(gl, getCube(), shaderTL, texWood, objLight);
+    l_6.trans = { t_x: -13, t_y: 6.5, t_z: 2, s_z: 25 };
+    sceneItems.push(l_6);
+
+    // r7
+    let l_7 = new TexLitDrawable(gl, getCube(), shaderTL, texWood, objLight);
+    l_7.trans = { t_x: -13, t_y: 7.6, t_z: 2, s_z: 25 };
+    sceneItems.push(l_7);
+
+    // b1
+    let b_1 = new TexLitDrawable(gl, getCube(), shaderTL, texWood, objLight);
+    b_1.trans = { t_x: 0, t_y: 1, t_z: -11, s_x: 25 };
+    sceneItems.push(b_1);
+
+    // b2
+    let b_2 = new TexLitDrawable(gl, getCube(), shaderTL, texWood, objLight);
+    b_2.trans = { t_x: 0, t_y: 2.1, t_z: -11, s_x: 25 };
+    sceneItems.push(b_2);
+
+    // b3
+    let b_3 = new TexLitDrawable(gl, getCube(), shaderTL, texWood, objLight);
+    b_3.trans = { t_x: 0, t_y: 3.2, t_z: -11, s_x: 25 };
+    sceneItems.push(b_3);
+
+    // b4
+    let b_4 = new TexLitDrawable(gl, getCube(), shaderTL, texWood, objLight);
+    b_4.trans = { t_x: 0, t_y: 4.3, t_z: -11, s_x: 25 };
+    sceneItems.push(b_4);
+
+    // b5
+    let b_5 = new TexLitDrawable(gl, getCube(), shaderTL, texWood, objLight);
+    b_5.trans = { t_x: 0, t_y: 5.4, t_z: -11, s_x: 25 };
+    sceneItems.push(b_5);
+
+    // b6
+    let b_6 = new TexLitDrawable(gl, getCube(), shaderTL, texWood, objLight);
+    b_6.trans = { t_x: 0, t_y: 6.5, t_z: -11, s_x: 25 };
+    sceneItems.push(b_6);
+
+    // b6
+    let b_7 = new TexLitDrawable(gl, getCube(), shaderTL, texWood, objLight);
+    b_7.trans = { t_x: 0, t_y: 7.6, t_z: -11, s_x: 25 };
+    sceneItems.push(b_7);
+
+    // ROOF
+    
     let roof_a = new TexLitDrawable(gl, getPlane(0), shaderTL, texRoof, objLight);
-    roof_a.trans = { t_y: 10.5, t_z: 5.5, s_x: 7, s_z: 11, r_x: 37, r_y: 90 };
+    roof_a.trans = { t_x: 7, t_y: 11, t_z: 2, s_x: 8, s_y: 7.5, s_z: 15, r_x: 0, r_y: 0, r_z: -25 };
     sceneItems.push(roof_a);
 
-    let wall_b = new TexLitDrawable(gl, getPlane(0), shaderTL, texWood, objLight);
-    wall_b.trans = { t_y: 3.5, t_x: -10, s_x: 3.5, s_z: 10, r_z: 90 };
-    sceneItems.push(wall_b);
-
-    let wall_b2 = new TexLitDrawable(
-        gl,
-        [
-            vec3(-10, 14.3, 0),
-            vec3(-10, 7, 0),
-            vec3(-10, 7, 10),
-            vec3(-10, 7, -10),
-            vec3(-10, 7, 0),
-            vec3(-10, 14.3, 0),
-        ],
-        shaderTL,
-        texWood,
-        objLight
-    );
-    sceneItems.push(wall_b2);
-
-    let wall_c = new TexLitDrawable(gl, getPlane(0), shaderTL, texWood, objLight);
-    wall_c.trans = { t_y: 3.5, t_z: -10, s_x: 3.5, s_z: 10, r_x: 90, r_y: 90 };
-    sceneItems.push(wall_c);
-
     let roof_b = new TexLitDrawable(gl, getPlane(0), shaderTL, texRoof, objLight);
-    roof_b.trans = { t_y: 10.5, t_z: -5.5, s_x: 7, s_z: 11, r_x: -37, r_y: 90 };
+    roof_b.trans = { t_x: -7, t_y: 11, t_z: 2, s_x: 8, s_y: 7.5, s_z: 15, r_x: 0, r_y: 180, r_z: 25 };
     sceneItems.push(roof_b);
 
-    let wall_d = new TexLitDrawable(gl, getPlane(0), shaderTL, texWood, objLight);
-    wall_d.trans = { t_y: 3.5, t_x: 10, s_x: 3.5, s_z: 10, r_z: 90 };
-    sceneItems.push(wall_d);
-
-    let wall_d2 = new TexLitDrawable(
-        gl,
-        [
-            vec3(10, 14.3, 0),
-            vec3(10, 7, 0),
-            vec3(10, 7, 10),
-            vec3(10, 7, -10),
-            vec3(10, 7, 0),
-            vec3(10, 14.3, 0),
-        ],
-        shaderTL,
-        texWood,
-        objLight
-    );
-    sceneItems.push(wall_d2);
+    // let roof_b = new TexLitDrawable(gl, getPlane(0), shaderTL, texRoof, objLight);
+    // roof_b.trans = { t_x: -5, t_y: 10.5, s_x: 7, s_z: 11, r_x: -37, r_y: 90 };
+    // sceneItems.push(roof_b);
 
     let then = 0
 
@@ -116,7 +239,7 @@ window.onload = () => {
         const deltaTime = now - then
         then = now
 
-        if (cam === ridecam) cam.increment(0.005 * deltaTime)
+        if (cam === ridecam) cam.increment(0.05 * deltaTime)
         animateSun(light, deltaTime)
         render()
         requestAnimationFrame(animate)
