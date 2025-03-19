@@ -228,10 +228,6 @@ window.onload = () => {
     roof_b.trans = { t_x: -7, t_y: 11, t_z: 2, s_x: 8, s_y: 7.5, s_z: 15, r_x: 0, r_y: 180, r_z: 25 };
     sceneItems.push(roof_b);
 
-    // let roof_b = new TexLitDrawable(gl, getPlane(0), shaderTL, texRoof, objLight);
-    // roof_b.trans = { t_x: -5, t_y: 10.5, s_x: 7, s_z: 11, r_x: -37, r_y: 90 };
-    // sceneItems.push(roof_b);
-
     let then = 0
 
     function animate(now) {
