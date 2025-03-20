@@ -117,12 +117,12 @@ window.onload = () => {
     let f_r = new TexLitDrawable(
         gl,
         [
-            vec3(0, 13, 16),
-            vec3(0, 7.1, 16),
-            vec3(-12.5, 7.1, 16),
-            vec3(12.5, 7.1, 16),
-            vec3(0, 7.1, 16),
-            vec3(0, 13, 16),
+            vec3(0, 13.6, 15),
+            vec3(0, 7.1, 15),
+            vec3(-14, 7.1, 15),
+            vec3(14, 7.1, 15),
+            vec3(0, 7.1, 15),
+            vec3(0, 13.6, 15),
         ],
         shaderTL,
         texWood,
@@ -240,12 +240,12 @@ window.onload = () => {
     let b_r = new TexLitDrawable(
         gl,
         [
-            vec3(0, 13, 14),
-            vec3(0, 7.1, 14),
-            vec3(-12.5, 7.1, 14),
-            vec3(12.5, 7.1, 14),
-            vec3(0, 7.1, 14),
-            vec3(0, 13, 14),
+            vec3(0, 13.6, 15),
+            vec3(0, 7.1, 15),
+            vec3(-14, 7.1, 15),
+            vec3(14, 7.1, 15),
+            vec3(0, 7.1, 15),
+            vec3(0, 13.6, 15),
         ],
         shaderTL,
         texWood,
@@ -361,9 +361,6 @@ function animateCubeSpin(cube){
 }
 
 function animateCubeMove(cube, circle){
-    let cube_tx = cube.t_x;
-    let cube_tz = cube.t_z;
-
     let cube_posx = Math.sin(1/2 * circle) * 25;
     let cube_posz = Math.cos(1/2 * circle) * 25;
     cube.trans = {t_x: cube_posx, t_z: cube_posz}
