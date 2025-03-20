@@ -251,7 +251,7 @@ window.onload = () => {
         texWood,
         objLight
     );
-    b_r.trans = {t_z: -25};
+    b_r.trans = {t_z: -26};
     sceneItems.push(b_r);
 
     // ROOF
@@ -274,11 +274,11 @@ window.onload = () => {
     let path_time = 0
 
 
-    // Load Bugatti OBJ model
+    // Load Bugatti B) OBJ model [Wolf Model :'(]
     const bugattiOBJ = loadFileAJAX('./Models/Wolf_obj.obj');
     const bugattiModel = parseOBJ(bugattiOBJ);
     let bugattiDrawable = new TexLitDrawable(gl, bugattiModel, shaderTL, texBrick, objLight);
-    bugattiDrawable.trans = { t_x: 0, t_y: 0, t_z: 0, s_x: 2, s_y: 2, s_z: 2};
+    bugattiDrawable.trans = { t_x: 0, t_y: 0, t_z: 0, s_x: 5, s_y: 5, s_z: 5};
     sceneItems.push(bugattiDrawable);
 
     let circle = 0
@@ -361,7 +361,7 @@ function animateCubeSpin(cube){
 }
 
 function animateCubeMove(cube, circle){
-    let cube_posx = Math.sin(1/2 * circle) * 25;
-    let cube_posz = Math.cos(1/2 * circle) * 25;
+    let cube_posx = Math.sin(circle) * 25;
+    let cube_posz = Math.cos(circle) * 25;
     cube.trans = {t_x: cube_posx, t_z: cube_posz}
 }
