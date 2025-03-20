@@ -149,9 +149,40 @@ function getFromFile(path) {
     return out
 }
 
+function parseOBJ(objData) {
+    const lines = objData.split('\n');
+    let positions = [];
+    let elements = [];
+    let out = [];
+
+    for (let line of lines) {
+        const parts = line.trim().split(/\s+/);
+        if (parts[0] === 'v') {
+            positions.push(vec3(
+                parseFloat(parts[1]),
+                parseFloat(parts[2]),
+                parseFloat(parts[3])
+            ));
+        } else if (parts[0] === 'f') {
+            elements.push(parseInt(parts[1]) - 1);
+            elements.push(parseInt(parts[2]) - 1);
+            elements.push(parseInt(parts[3]) - 1);
+        }
+    }
+
+    for (let i of elements) {
+        out.push(positions[i]);
+    }
+
+    return out;
+}
+
+
+
 export {
     getPlane,
     getCube,
     getSphere,
     getFromFile,
+    parseOBJ
 }

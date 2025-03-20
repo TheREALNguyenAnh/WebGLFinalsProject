@@ -1,6 +1,6 @@
 import { texNightSky, texDaySky, texGrass, texRoof, texCobble, texWood, texBrick, texCrate } from './Textures/index.js'
 import { FlyCam, RideCam, Light, SkyBox, TexLitDrawable } from './Objects/index.js'
-import { getPlane, getCube, getSphere, getFromFile } from './Library/index.js'
+import { getPlane, getCube, getSphere, getFromFile, parseOBJ } from './Library/index.js'
 import { shSky, shTL} from './Shaders/index.js'
 
 const proj = perspective(90, 1, 0.1, 100)
@@ -272,6 +272,16 @@ window.onload = () => {
     sceneItems.push(crate);
 
     let path_time = 0
+
+
+    // Load Bugatti OBJ model
+    const bugattiOBJ = loadFileAJAX('./Models/Wolf_obj.obj');
+    const bugattiModel = parseOBJ(bugattiOBJ);
+    let bugattiDrawable = new TexLitDrawable(gl, bugattiModel, shaderTL, texBrick, objLight);
+    bugattiDrawable.trans = { t_x: 0, t_y: 0, t_z: 0, s_x: 2, s_y: 2, s_z: 2};
+    sceneItems.push(bugattiDrawable);
+
+    let circle = 0
     let then = 0
 
     function animate(now) {
@@ -281,7 +291,7 @@ window.onload = () => {
         path_time = (path_time + deltaTime) % 10000;
         
 
-        if (cam === ridecam) cam.increment(0.05 * deltaTime);
+        if (cam === ridecam) cam.increment(0.5 * deltaTime);
         animateSun(light, deltaTime);
         animateCubeSpin(crate);
         animateCubeMove(crate, path_time);

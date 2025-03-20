@@ -1,8 +1,9 @@
-import { getPlane, getCube, getSphere, getFromFile } from './FunInclassFunctions.js'
+import { getPlane, getCube, getSphere, getFromFile, parseOBJ } from './FunInclassFunctions.js';
 
 export {
     getPlane,
     getCube,
     getSphere,
-    getFromFile
+    getFromFile,
+    parseOBJ
 }
