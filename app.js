@@ -1,4 +1,4 @@
-import { texNightSky, texDaySky, texGrass, texRoof, texCobble, texWood, texBrick } from './Textures/index.js'
+import { texNightSky, texDaySky, texGrass, texRoof, texCobble, texWood, texBrick, texCrate } from './Textures/index.js'
 import { FlyCam, RideCam, Light, SkyBox, TexLitDrawable } from './Objects/index.js'
 import { getPlane, getCube, getSphere, getFromFile } from './Library/index.js'
 import { shSky, shTL} from './Shaders/index.js'
@@ -38,8 +38,8 @@ window.onload = () => {
         vec4(1, 1, 1, 1),
         null
     )
-    light.step = 0
-    light.maxStep = 10000
+    light.step = 0;
+    light.maxStep = 10000;
 
     let ground = new TexLitDrawable(gl, getPlane(3), shaderTL, texGrass, objLight)
     ground.trans = { s_x: 50, s_z: 50 }
@@ -264,20 +264,32 @@ window.onload = () => {
     roof_b.trans = { t_x: -7, t_y: 10.5, t_z: 2, s_x: 8, s_y: 7.5, s_z: 15, r_x: 0, r_y: 180, r_z: 25 };
     sceneItems.push(roof_b);
 
+    // SPINING CUBE
+
+    let crate = new TexLitDrawable(gl, getCube(), shaderTL, texCrate, objLight);
+    crate.trans = {t_x: 1, t_y: 5, t_z: 1, s_x: 3, s_y: 3, s_z: 3, r_y: 45, r_z: 45};
+    // spin_cube.step = 0;
+    sceneItems.push(crate);
+
+    let circle = 0
     let then = 0
 
     function animate(now) {
-        now *= 0.001 // Convert to seconds
-        const deltaTime = now - then
-        then = now
+        now *= 0.001; // Convert to seconds
+        const deltaTime = now - then;
+        then = now;
+        circle = (circle + deltaTime) % 10000;
+        
 
-        if (cam === ridecam) cam.increment(0.05 * deltaTime)
-        animateSun(light, deltaTime)
-        render()
-        requestAnimationFrame(animate)
+        if (cam === ridecam) cam.increment(0.05 * deltaTime);
+        animateSun(light, deltaTime);
+        animateCubeSpin(crate);
+        animateCubeMove(crate, circle);
+        render();
+        requestAnimationFrame(animate);
     }
 
-    requestAnimationFrame(animate)
+    requestAnimationFrame(animate);
 }
 
 function render() {
@@ -329,4 +341,20 @@ function animateSun(light, deltaTime) {
         sky = daysky
     }
     light.position = newPos
+}
+
+function animateCubeSpin(cube){
+    let cube_rx = cube.r_x;
+    let cube_ry = cube.r_y;
+    let cube_rz = cube.r_z;
+    cube.trans = {r_x: cube_rx + 0.5, r_y: cube_ry + 0.5, r_z: cube_rz + 0.5};
+}
+
+function animateCubeMove(cube, path){
+    let cube_tx = cube.t_x;
+    let cube_tz = cube.t_z;
+
+    let cube_posx = Math.sin(path) * Math.sqrt(Math.pow(30, 2) - Math.pow(cube_tz, 2));
+    let cube_posz = Math.sin(path + Math.PI/2) * Math.sqrt(Math.pow(30, 2) - Math.pow(cube_tx, 2));
+    cube.trans = {t_x: cube_posx, t_z: cube_posz}
 }

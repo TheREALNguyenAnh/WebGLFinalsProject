@@ -16,7 +16,7 @@ const texDaySky = [
     './Textures/sky-back.jpg'
 ]
 
-const texBrick = './Textures/brcks.jpg'
+const texBrick = './Textures/brks.jpg'
 const texGrass = './Textures/256x grass block.png'
 const texRoof = './Textures/Blue Roof.png'
 const texCobble = './Textures/cobble1.png'

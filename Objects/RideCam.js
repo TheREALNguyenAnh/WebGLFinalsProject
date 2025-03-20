@@ -2,9 +2,9 @@ export default class RideCam {
     constructor() {
         this.matrix = mat4()
         this.eye = vec3(0, 2, 2)
-        this.radius = 20
+        this.radius = 30
         this.theta = 0
-        this.height = 10
+        this.height = 25
         this.u = vec3(1, 0, 0)
         this.v = vec3(0, 1, 0)
         this.n = vec3(0, 0, 1)
@@ -36,10 +36,10 @@ export default class RideCam {
 
     reset() {
         this.camera_matrix = mat4()
-        this.eye = vec3(0, 10, 20)
-        this.radius = 20
+        this.eye = vec3(0, 2, 2)
+        this.radius = 30
         this.theta = 0
-        this.height = 10
+        this.height = 25
 
         this.updateCamMatrix()
     }
