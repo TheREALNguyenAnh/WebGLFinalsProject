@@ -271,20 +271,20 @@ window.onload = () => {
     // spin_cube.step = 0;
     sceneItems.push(crate);
 
-    let circle = 0
+    let path_time = 0
     let then = 0
 
     function animate(now) {
         now *= 0.001; // Convert to seconds
         const deltaTime = now - then;
         then = now;
-        circle = (circle + deltaTime) % 10000;
+        path_time = (path_time + deltaTime) % 10000;
         
 
         if (cam === ridecam) cam.increment(0.05 * deltaTime);
         animateSun(light, deltaTime);
         animateCubeSpin(crate);
-        animateCubeMove(crate, circle);
+        animateCubeMove(crate, path_time);
         render();
         requestAnimationFrame(animate);
     }
@@ -350,11 +350,11 @@ function animateCubeSpin(cube){
     cube.trans = {r_x: cube_rx + 0.5, r_y: cube_ry + 0.5, r_z: cube_rz + 0.5};
 }
 
-function animateCubeMove(cube, path){
+function animateCubeMove(cube, circle){
     let cube_tx = cube.t_x;
     let cube_tz = cube.t_z;
 
-    let cube_posx = Math.sin(path) * Math.sqrt(Math.pow(30, 2) - Math.pow(cube_tz, 2));
-    let cube_posz = Math.sin(path + Math.PI/2) * Math.sqrt(Math.pow(30, 2) - Math.pow(cube_tx, 2));
+    let cube_posx = Math.sin(1/2 * circle) * 25;
+    let cube_posz = Math.cos(1/2 * circle) * 25;
     cube.trans = {t_x: cube_posx, t_z: cube_posz}
 }
